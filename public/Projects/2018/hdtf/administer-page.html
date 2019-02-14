@@ -1,0 +1,204 @@
+<!DOCTYPE hmtl>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>Staff Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="theme-color" content="#ff5722">
+
+        <link rel="shortcut icon" href="/images/favicon.ico">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.pink-indigo.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">      
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="jquery-ui.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.css" />
+        <style>
+            .feedbtn{
+                border:none;
+                background-color:#2d0000;
+                padding:16px;
+                color:white;
+                margin-top:5%;
+                border-radius: 5%
+            }
+            input {
+                width: 130px;
+                box-sizing: border-box;
+                border-top:none;
+                border-left:none;
+                border-right:none;
+                border-bottom-color:#7d0000;
+                font-size: 16px;
+                background-color: white;
+                background-position: 10px 10px; 
+                background-repeat: no-repeat;
+                padding: 12px 20px 12px 40px;
+                -webkit-transition: width 0.4s ease-in-out;
+                transition: width 0.4s ease-in-out;
+            }
+            input::after{
+                border-bottom:2px;
+                border-bottom-color:#7d0000;
+                color:#7d0000;
+            }
+            input:focus {
+                width: 100%;
+            }
+            .tab {
+                overflow: hidden;
+                border-bottom: 1px solid #c4c4c4;
+                background-color: #f1f1f1;
+            }
+            /* Buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                border: 2px solid #f1f1f1;
+                float: left;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.5s;
+                font-size: 17px;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            .tab button.active {
+                border-bottom:2px solid #7d0000;
+                color:#7f0000;
+            }
+            .tabcontent {
+                display: none;
+                border-bottom:1px solid #ccc;
+                padding: 6px 12px;
+                border-top: none;
+            }
+            .animate-fadein {
+                position: fixed;
+                -webkit-animation-name: fadein;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fadein;
+                animation-duration: 1.5s
+            }
+            @-webkit-keyframes fadein {
+                from {opacity:0 } 
+                to {opacity:1 }
+            }
+
+            @keyframes fadein { 
+                from{opacity:0 } 
+                to{ opacity:1 }
+            }     
+            @media screen and (max-width: 1024px){
+                .mdl-layout__header {
+                    display: inherit;
+                }
+            }
+        </style>
+    </head>
+    <body id="main-page" style="background-color:#7f0000;height:100%;width:100%;" class="animate-fadein">  
+        <header class="mdc-toolbar" style="background-color:#7f0000;height:10%">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <a href="" class="material-icons mdc-toolbar__menu-icon" style="margin:10px">refresh</a>
+                <span class="mdc-toolbar__title">Staff Page</span>
+                <a href="index-test.html" class="material-icons mdc-toolbar__menu-icon" style="margin:10px 10px 10px 40%">home</a>
+                </section>
+            </div>
+        </header>   
+        <main class="animate-fadein" id="main" style="background-color:white;height:80%;width:100%;display:none">
+            <div class="tab">
+                <button class="tablinks" onclick="openPage(event, 'Stamp')">Stamp</button>
+                <button class="tablinks" onclick="openPage(event, 'Call')">Call</button>
+                <button class="tablinks" onclick="openPage(event, 'Discription')">Discription</button>
+            </div>
+            <div id="Stamp" class="tabcontent">
+                <h4 style="color:#2d0000;margin-bottom:5%">Feed Stamp</h4>
+                <hr style="border:1px;background-color:#424242">
+                <form action="/">
+                    <input type="text" name="ID" placeholder="ID"><br>
+                    <input type="number" name="Amount" placeholder="Amount"><br>
+                    <button type="submit" class="feedbtn">Feed</button>
+                </form>
+            </div>                
+            <div id="Call" class="tabcontent">
+                <h4 style="color:#2d0000;margin-bottom:5%">Emergency Call</h4>
+                <hr style="background-color:#cccccc;border:1px">                
+                <a href="tel://" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    왕건한 선생님
+                </a>
+                <hr style="background-color:#cccccc;border:1px">
+                <a href="tel://" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    박기식 선생님
+                </a>
+                <hr style="background-color:#cccccc;border:1px">    
+                <a href="tel://" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    과학기술정보통신부 부장
+                </a>
+                <hr style="background-color:#cccccc;border:1px">
+                <a href="tel://" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    창의융합부 부장
+                </a>
+                <hr style="background-color:#cccccc;border:1px">
+                <a href="tel://112" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    화학부 부장
+                </a>
+                <hr style="background-color:#cccccc;border:1px">  
+                <a href="tel://119" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    물리부 부장
+                </a>
+                <hr style="background-color:#cccccc;border:1px">
+                <a href="tel://112" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    112
+                </a>
+                <hr style="background-color:#cccccc;border:1px">  
+                <a href="tel://119" style="text-decoration:none;color:#2d0000;font-size:20px">
+                    <i class="material-icons" style="color:#7f0000;margin-left:5px;margin-right:10%">phone</i>
+                    119
+                </a>   
+                <hr style="background-color:#cccccc;border:1px">  
+            </div>                
+            <div id="Discription" class="tabcontent">
+                <h3>Discription</h3>
+                <p>Heo Yisub Heo Yisub Heo Yisub Heo Yisub Heo Yisub</p>
+            </div>
+                        
+        </main>
+        
+        <script>
+            window.onload = function(){
+                document.getElementById("main").style.display = "";
+            }
+
+            function openPage(evt, pageName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(pageName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }            
+
+            
+            let drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
+            document.querySelector('.menu').addEventListener('click', () => drawer.open = true);  
+
+            
+        
+        </script>
+    </body>
+    
+</html>

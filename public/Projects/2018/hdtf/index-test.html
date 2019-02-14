@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>화동제 앱</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <style>
+        .slideimg {display: none;}
+        img {vertical-align: middle;}
+        .table{
+            color:#00062d;
+            text-align:center;
+            padding:20px;
+        }
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+        .top-container {
+            background-color: #4050b6;
+            border:none;
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            padding: 10px 16px;
+            background: #4050b6;
+            color: #f1f1f1;
+            border:none;
+        }
+        .content {
+            padding: 16px;
+        }
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .sticky + .content {
+            padding-top: 102px;
+        }
+        .tab {
+            overflow: hidden;
+            background-color: #4050b6;
+        }
+        /* Buttons inside the tab */
+        .tab button {
+            color:white;
+            border-bottom:2px solid #4050b6;
+            background-color: inherit;
+            border:none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 16px;
+            transition: 0.5s;
+            font-size: 17px;
+        }
+        .tab button.active {
+            opacity: 0.6;
+            border-bottom:2px solid #e91e63;            
+        }
+        .tabcontent {
+            display: none;
+            border-bottom:1px solid #ccc;
+            
+            border-top: none;
+            background-color:white;
+        }   
+        .stampcard {
+            box-shadow: 0 4px 8px 0 #bbbbbb;
+            padding:10px;
+        }
+        .stampcard:active {
+            box-shadow: 0 0px 8px 0 #bbbbbb;
+        }
+        .card {
+            box-shadow: 0 8px 16px 5px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 90%;
+            padding:10px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .card:active {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .container {
+            padding: 2px 8px;
+        } 
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        #navmain {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            width:94%;            
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        .active {
+            background-color: #717171;
+        }
+        .slide-fade {
+            -webkit-animation-name: slide-fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: slide-fade;
+            animation-duration: 1.5s;
+        }
+        @-webkit-keyframes slide-fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        @keyframes slide-fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        @media only screen and (max-width: 300px) {
+            .text {font-size: 11px}
+        }
+        .map {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            
+        }
+        .map button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        .map button:hover {
+            background-color: #ddd;
+        }
+        .map button.active {
+            background-color: #ccc;
+            border-bottom:2px solid #425983;
+
+        }
+        .mapcontent {
+            display: none;
+            padding: 12px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        #topbtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #440055;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+        }
+        #topbtn:hover {
+            background-color: #555;
+        }
+        #topbtn {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 99;
+            font-size: 10px;
+            border: none;
+            outline: none;
+            background-color: #ffeb3b;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        #topbtn:active {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+        .contact, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        .contactbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .contactbtn:active{
+            box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
+            opacity: 0.6;
+        }
+        /* .animate-fadein {
+            position: fixed;
+            -webkit-animation-name: fadein;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fadein;
+            animation-duration: 1.5s
+        }
+        @-webkit-keyframes fadein {
+            from {opacity:0 } 
+            to {opacity:1 }
+        }
+
+        @keyframes fadein { 
+            from{opacity:0 } 
+            to{ opacity:1 }
+        }      */
+    </style>
+    </head>
+    <body style="background-color:#123056;">
+        <button onclick="gototop()" id="topbtn" title="Go to top"><i class="material-icons" style="color:black">arrow_upward</i></button>
+        <div id="sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" onclick="closeNav()"><i class="material-icons" style="color:#818181">home</i> Home</a><hr>
+            <a href="#" onclcik="closeNav()"><i class="material-icons" style="color:#818181">swap_horiz</i> Stamp</a><hr>
+            <a href="#" onclick="opnfullmap();closeNav()"><i class="material-icons" style="color:#818181">school</i> School Map</a><hr>
+            <a href="https://facebook.com/KLISTLIST/"><i class="material-icons" style="color:#818181">contacts</i> Contact</a><hr>
+            <a href="#" onclick="closeNav()"><i class="material-icons" style="color:#818181">event</i> Event</a><hr>
+            <a href="https://facebook.com/" onclick="closeNav()"><i class="material-icons" style="color:#818181">share</i> Share</a><hr>
+            <a href="#"><i class="material-icons" style="color:#818181">alarm</i> Alarm</a><hr>
+            <div>
+                <a href="register.html" style="margin-left:10px;float:left;display:table;text-decoration:none;color:#002885;font-size:15px;">회원가입</a>
+                <a href="login.html" style="margin-left:10px;float:left;display:table;text-decoration:none;color:#002885;font-size:15px;">로그인</a>
+            </div><br><br><hr>
+            
+            
+            
+        </div>
+        <div class="top-container">
+            <span style="font-size:30px;cursor:pointer;" onclick="openNav()"><i class="material-icons" style="color:white;float:left;">menu</i></span>
+            <br>
+        </div>
+        <div class="header" id="header">
+            <div class="tab">
+                <button class="tablinks" onclick="openPage(event, 'Stamp');deletestart();">Stamp</button>
+                <button class="tablinks" onclick="openPage(event, 'Home');deletestart();">Home</button>
+                <button id="mapbtn" class="tablinks" onclick="openPage(event, 'Map');deletestart();opnfullmap();">Map</button>
+                <button id="addonsbtn" class="tablinks" onclick="openPage(event, 'Add-ons');deletestart();eventpageopn();">Add-ons</button>
+            </div>
+        </div>
+        <div id="start" style="height:700px;background-color:white;padding:15px" class="animate-fadeout">
+            <div class="card">
+                <h3 style="color:#00062d;text-align:center">환영합니다!!</h3>
+                <hr style="border-color:#00062d">
+                <h5 style="color:#123056;text-align:left;margin:10px"><i class="material-icons" style="color:#00062d;float:left;margin-right:10px;">donut_large</i>화동제를 더욱 재밌게 즐기는 법</h5>
+                <p style="color:#425983;text-align:left;margin:20px;font-size:17px">화동제 앱을 이용하면 원하는 동아리 부스의 위치를 쉽게 파악할 수 있습니다.</p>
+                <hr style="border-color:#123056;width:90%;margin-left:auto;margin-right:auto">
+                <h5 style="color:#123056;text-align:left;margin:10px"><i class="material-icons" style="color:#00062d;float:left;margin-right:10px;">donut_large</i>화동제를 더욱 싸게 즐기는 법</h5>
+                <p style="color:#425983;text-align:left;margin:20px;font-size:17px">스탬프 기능으로 먹거리 장터를 이용할 수 있습니다</p>
+                <p style="color:#425983;text-align:left;margin:20px">스탬프는 동아리 부스 관람을 마치면 지급받을 수 있습니다</p>
+                <hr style="border-color:#123056;width:90%;margin-left:auto;margin-right:auto">
+                <h5 style="color:#123056;text-align:left;margin:10px"><i class="material-icons" style="color:#00062d;float:left;margin-right:10px;">donut_large</i>화동제를 더욱 의미있게 즐기는 법</h5>
+                <p style="color:#425983;text-align:left;margin:20px;font-size:17px">화동제의 하루 일정을 한눈에 파악하세요!!</p>
+                <p style="color:#425983;text-align:left;margin:20px">각 일정은 앱을 통해 확인 가능하며 알림을 설정하면 실시간으로 알려드립니다</p>
+            </div>
+        </div>
+
+        <div id="Stamp" class="tabcontent" style="display:none;padding: 6px 12px;">
+            <div style="display:tabel-row;margin:10px">
+                <div class="stampcard" style="display:table-cell">
+                    <img src="images/S.png" style="width:100%">
+                    <div class="container">
+                        <a href="" style="text-decoration:none;color:#123056"><h4><b>Stamp</b></h4></a>
+                    </div>
+                </div>
+                <div class="stampcard" style="display:table-cell">
+                    <img src="images/S.png" style="width:100%">
+                    <div class="container">
+                        <a href="" style="text-decoration:none;color:#123056"><h4><b>Stamp</b></h4></a> 
+                    </div>
+                </div>
+            </div>
+            <div style="display:tabel-row;margin:10px">
+                <div class="stampcard" style="display:table-cell">
+                    <img src="images/S.png" style="width:100%">
+                    <div class="container">
+                        <a href="" style="text-decoration:none;color:#123056"><h4><b>Stamp</b></h4></a>
+                    </div>
+                </div>
+                <div class="stampcard" style="display:table-cell">
+                    <img src="images/S.png" style="width:100%">
+                    <div class="container">
+                        <a href="" style="text-decoration:none;color:#123056"><h4><b>Stamp</b></h4></a> 
+                    </div>
+                </div>
+            </div>
+            <div style="display:tabel-row;margin:10px">
+                <div class="stampcard" style="display:table-cell">
+                    <img src="images/S.png" style="width:100%">
+                    <div class="container">
+                        <a href="" style="text-decoration:none;color:#123056"><h4><b>Stamp</b></h4></a>
+                    </div>
+                </div>
+                <div class="stampcard" style="display:table-cell">
+                    <img src="images/S.png" style="width:100%">
+                    <div class="container">
+                        <a href="" style="text-decoration:none;color:#123056"><h4><b>Stamp</b></h4></a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Home" class="tabcontent" style="padding: 6px 12px;">
+            <div class="card">
+                <img src="images/mina_poster.png" style="width:100%;margin-left:auto;margin-right:auto">
+                <div class="container">
+                    <h3 style="color:#123056">화동제</h3>
+                    <p>8월 더운데 왜 함</p>
+                </div>
+            </div>
+            <br>
+            <table class="card" style="width:94%">
+                <thead>
+                    <tr>
+                        <th class="table" >행사</th>
+                        <th class="table" >장소</th>
+                        <th class="table" >시간</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table" style="color:#123056">트와이스 공개싸인회</td>
+                        <td class="table" style="color:#123056">(체육관)</td>
+                        <td class="table" style="color:#123056">9:00</td>
+                    </tr>
+                    <tr>
+                        <td class="table" style="color:#123056">트와이스 셀카</td>
+                        <td class="table" style="color:#123056">과학기술정보통신부 부실</td>
+                        <td class="table" style="color:#123056">10:00</td>
+                    </tr>
+                    <tr>
+                        <td class="table" style="color:#123056">트와이스 공연</td>
+                        <td class="table" style="color:#123056">자유로</td>
+                        <td class="table" style="color:#123056">12:00</td>
+                    </tr>
+                    <tr>
+                        <td class="table" style="color:#123056">트와이스 팬싸인회</td>
+                        <td class="table" style="color:#123056">체육관</td>
+                        <td class="table" style="color:#123056">9:00</td>
+                    </tr>
+                    <tr>
+                        <td class="table" style="color:#123056">트와이스 방송</td>
+                        <td class="table" style="color:#123056">경기고등학교</td>
+                        <td class="table" style="color:#123056">10:00</td>
+                    </tr>
+                    <tr>
+                        <td class="table" style="color:#123056">트와이스 단체사진</td>
+                        <td class="table" style="color:#123056">과학기술정보통신부 부실</td>
+                        <td class="table" style="color:#123056">12:00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>          
+            <div class="slideshow-container">
+                <div class="slideimg slide-fade">
+                    <img src="images/list_s.png" style="width:100%">
+                    <div class="text" style="color:#123056">과학기술정보통신부</div>
+                </div>                
+                <div class="slideimg slide-fade">
+                    <img src="images/mina.png" style="width:100%">
+                    <div class="text" style="color:#123056">미나 <3</div>
+                </div>
+                <div class="slideimg slide-fade">
+                    <img src="images/list_i.png" style="width:100%">
+                    <div class="text" style="color:#123056">과학기술정보통신부</div>
+                </div>                
+            </div>
+            <br>
+            <div class="card" onclick="eventpageopn()">
+                <img src="images/S.png" style="width:100%">
+                <div class="container">
+                    <p style="color:#123056;text-align:center">이벤트 페이지</p>
+                </div>
+            </div>            
+            <br>
+        </div>
+
+        <div id="Map" class="tabcontent" style="height:100%;">
+            <div class="map">
+                <button id="Full-map" class="maplinks" onclick="openCity(event, '전체')">전체</button>
+                <button class="maplinks" onclick="openCity(event, '학생동')">학생동</button>
+                <button class="maplinks" onclick="openCity(event, '과학동')">과학동</button>
+                <button class="maplinks" onclick="openCity(event, '운동장')">운동장</button>
+            </div>
+                
+            <div id="전체" class="mapcontent">
+                <h3 style="color:#00062d">전체</h3><hr style="border-color:#123056">
+                <h5 style="color:#123056">건물의 위치를 파악 할 수 있습니다</h5>
+                <img src="images/mina_poster.png" width="100%">
+            </div>
+
+            <div id="학생동" class="mapcontent">
+                <h3 style="color:#00062d">학생동</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+                <h5 style="color:#123056">2층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+                <h5 style="color:#123056">3층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+                
+            <div id="과학동" class="mapcontent">
+                <h3 style="color:#00062d">과학동</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+                <h5 style="color:#123056">2층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+                <h5 style="color:#123056">3층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+                
+            <div id="운동장" class="mapcontent">
+                <h3 style="color:#00062d">운동장</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+
+            <div class="map">
+                <button class="maplinks" onclick="openCity(event, '체육관')">체육관</button>
+                <button class="maplinks" onclick="openCity(event, '정문')">정문</button>
+                <button class="maplinks" onclick="openCity(event, '후문')">후문</button>
+                <button class="maplinks" onclick="openCity(event, '생활관')">생활관</button>
+            </div>
+                
+            <div id="체육관" class="mapcontent">
+                <h3 style="color:#00062d">체육관</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+                <h5 style="color:#123056">2층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+                
+            <div id="정문" class="mapcontent">
+                <h3 style="color:#00062d">정문</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+                
+            <div id="후문" class="mapcontent">
+                <h3 style="color:#00062d">후문</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+
+            <div id="생활관" class="mapcontent">
+                <h3 style="color:#00062d">생활관</h3><hr style="border-color:#123056"> 
+                <h5 style="color:#123056">1층</h5>
+                <img src="images/mina_poster.png" width="100%"><hr style="border-color:#123056">
+            </div>
+
+            <br>    
+        </div>
+
+        <div id="Add-ons" class="tabcontent">
+            <div class="map">
+                <button id="Add-ons-Event-page" class="maplinks" onclick="openCity(event, 'Event-page')" style="color:#123056">Event-page</button>
+                <button class="maplinks" onclick="openCity(event, 'Contact-page')" style="color:#123056">Contact-page</button>
+                <button class="maplinks" onclick="openCity(event, 'Alert-page')" style="color:#123056">Alert-page</button>                
+            </div>
+                
+            <div id="Event-page" class="mapcontent">
+                <h3>Event-page</h3>
+                <p>Event-page</p>
+            </div>
+                
+            <div id="Contact-page" class="mapcontent">
+                <div>
+                    <form accept-charset="mailencording" onsubmit="emaillAcceptCharset(this)" action="mailto:kyunggihs@kyunggi.com" method="post" enctype="text/plain">
+                        <label for="name">Name</label>
+                        <input class="contact" type="text" id="name" name="name" placeholder="Your name.." >
+                    
+                        <label for="phone-number">Phone Number</label>
+                        <input class="contact" type="text" id="phone-number" name="phone-number" placeholder="Your phone number..">
+                    
+                        <label for="subject">Subject</label>
+                        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    
+                        <input type="checkbox" id="crimecheck"  onclick="reportcrime()">Report Crime<br><br>    
+
+                        <div id="report-page" style="display:none;">
+                            <label for="crime">What Crime?</label>
+                            <select name="crime">
+                                <option value="">Select</option>
+                                <option value="defamation">Defamation</option>
+                                <option value="molest">Molest</option>
+                                <option value="rant">Rant</option>
+                                <option value="violence">Violence</option>                                    
+                            </select>
+                            <label for="where">Where?</label>
+                            <select name="where">
+                                <option value="">Select</option>
+                                <option value="과학기술정보통신부">과학기술정보통신부</option>
+                                <option value="물리부">물리부</option>
+                                <option value="창의융합부">창의융합부</option>
+                                <option value="화학부">화학부</option>                                    
+                            </select>
+                        </div>
+
+                        <input class="contactbtn" type="submit" value="Submit" style="margin-top:10px;margin-bottom:20px">
+
+                    </form>
+                </div>
+            </div>
+                
+            <div id="Alert-page" class="mapcontent">
+                <h3>Alert-page</h3>
+                <p>Alert-page</p>
+            </div>
+        </div>
+
+        <footer style="padding:16px;background-color:#4050b6">
+            <h6 style="color:white;font-size:15px">Made by <big><b>Kyunggi Highschool KLIST</b></big></h6>
+        </footer>
+
+        <script>
+            window.onscroll = function() {headerfunc(); topscroll()};
+
+            var header = document.getElementById("header");
+            var sticky = header.offsetTop;
+
+            function headerfunc() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+            }
+            
+            function deletestart(){
+                document.getElementById('start').style.display='none';
+            }
+
+            function openPage(evt, pageName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(pageName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }            
+
+            function openNav() {
+                document.getElementById("sidenav").style.width = "250px";
+                document.getElementById("navmain").style.marginLeft = "250px";
+                document.body.style.backgroundcolor="rgba(0,0,0,0.4)"
+            }
+
+            function closeNav() {
+                document.getElementById("sidenav").style.width = "0";
+                document.getElementById("navnavmain").style.marginLeft= "0";
+                document.body.style.backgroundColor="white";
+            }
+
+            var sidenav = document.getElementById('sidenav');
+            window.onclick = function(event) {
+                if (event.target == sidenav) {
+                    sidenav.style.display = "none";
+                }
+            }
+
+            var slideIndex = 0;
+            showSlides();
+
+            function showSlides() { 
+                var i;
+                var slides = document.getElementsByClassName("slideimg");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none"; 
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {slideIndex = 1} 
+                slides[slideIndex-1].style.display = "block"; 
+                setTimeout(showSlides, 3000); // Change image every 3 seconds
+            }
+            
+            function openCity(evt, mapName) {
+                var i, mapcontent, maplinks;
+                mapcontent = document.getElementsByClassName("mapcontent");
+                for (i = 0; i < mapcontent.length; i++) {
+                    mapcontent[i].style.display = "none";
+                }
+                maplinks = document.getElementsByClassName("maplinks");
+                for (i = 0; i < maplinks.length; i++) {
+                    maplinks[i].className = maplinks[i].className.replace(" active", "");
+                }
+                document.getElementById(mapName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            
+            function eventpageopn(){
+                document.getElementById("addonsbtn").click();
+                document.getElementById("Add-ons-Event-page").click();
+            }
+
+            function opnfullmap(){
+                document.getElementById("mapbtn").click();
+                document.getElementById("Full-map").click();
+            }
+
+            function topscroll() {
+                if (document.body.scrollTop > 1100 || document.documentElement.scrollTop > 1100) {
+                    document.getElementById("topbtn").style.display = "block";
+                } else {
+                    document.getElementById("topbtn").style.display = "none";
+                }
+            }
+
+            function gototop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <script>
+            window.onload = function(){
+                document.getElementById("main-page").style.display = "";
+            }
+
+            function reportcrime() {
+                var checkBox = document.getElementById("crimecheck");
+                var text = document.getElementById("report-page");
+                if (checkBox.checked == true){
+                    text.style.display = "block";
+                } else {
+                    text.style.display = "none";
+                }
+            }
+            
+            // function emaillAcceptCharset(form) {
+            //     if (form.canHaveHTML) {
+            //         document.charset = form.acceptCharset;
+            //     }
+            //     return true;
+            // }
+        </script>
+    </body>
+</html>

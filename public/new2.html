@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#263238">
+
+  <style>
+    .grad1{
+      background: linear-gradient(to bottom, #08112a, #1a415c, #41596a) ;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-attachment: fixed;
+    }
+
+    .collection-item{
+      height: 100px;
+      border-style: none !important;
+      background-color: #263238 !important;
+      padding: 0px 0px !important;
+    }
+    .login{
+      height: 100%;
+    }
+
+  </style>
+  <script>
+      let startTimeObj, endTimeObj;
+      let chips, groupRadio, personRadio, chips2;
+      let start_time, end_time;
+      let startDate, endDate;
+      let startDateObj, endDateObj;
+      let start_time_num = 0, end_time_num = 0;
+      let group=0, gubun=1;
+      let gubunRadio1, gubunRadio2;
+      let groupMembers = [];
+      let submitButton;
+      let haksaPassword;
+
+      // init variables
+      window.onload = function () {
+          startTimeObj = document.getElementById('start_time');
+          startTimeObj.addEventListener('change', resetStartTime);
+          endTimeObj = document.getElementById('end_time');
+          endTimeObj.addEventListener('change', resetEndTime);
+          chips = document.getElementById('chips');
+          chips2 = document.getElementById('chips2');
+          groupRadio = document.getElementById('group');
+          groupRadio.addEventListener('change', toggleGroup);
+          personRadio = document.getElementById('person');
+          personRadio.addEventListener('change', togglePerson);
+          startDateObj = document.getElementById('start_date');
+          endDateObj = document.getElementById('end_date');
+          gubunRadio1 = document.getElementById('gubun1');
+          gubunRadio2 = document.getElementById('gubun2');
+          gubunRadio1.addEventListener('change', toggleGubun1);
+          gubunRadio2.addEventListener('change', toggleGubun2);
+          startDateObj.addEventListener('change', resetStartDate);
+          endDateObj.addEventListener('change', resetEndDate);
+          submitButton = document.getElementById('submit');
+          submitButton.addEventListener('click', submitData);
+          haksaPassword = document.getElementById('password2');
+          setDateTime();
+      };
+
+
+      function setDateTime(){
+          let d = new Date();
+          let year, month, date, hours, minutes;
+          year = d.getFullYear();
+          month = returnTwo(d.getMonth() + 1);
+          date = returnTwo(d.getDate());
+          hours = returnTwo(d.getHours());
+          minutes = returnTwo(d.getMinutes());
+          startDateObj.value = year + "-" + month + "-" + date;
+          endDateObj.value = startDateObj.value;
+          startTimeObj.value = hours + ":" + minutes;
+          endTimeObj.value = hours + ":" + minutes;
+          resetStartTime();
+          resetEndTime();
+      }
+
+      function returnTwo(num){
+          if(num.toString().length < 2){
+              return "0" + num.toString();
+          }
+          return num.toString();
+      }
+
+
+      function resetEndDate() {
+          endDate = endDateObj.value;
+          if(endDate < startDate) {
+              endDate = startDate;
+              endDateObj.value = endDate;
+          }
+      }
+      function resetStartDate(){
+          if(gubun===1){
+              endDateObj.value = startDateObj.value;
+          }
+          startDate = startDateObj.value;
+      }
+      function resetStartTime() {
+          let time = startTimeObj.value;
+          let start_time_min = parseInt(time.split(":")[1]);
+          let start_time_hour = parseInt(time.split(':')[0]);
+          if(start_time_hour >= 23){
+              start_time_hour = 22;
+              start_time_min = 30;
+          }else if(start_time_hour === 22 && start_time_min > 30) {
+              start_time_hour = 22;
+              start_time_min = 30;
+          }else {
+              start_time_min -= start_time_min % 10;
+          }
+          start_time = start_time_hour.toString();
+          if(start_time_hour.toString().length < 2){
+              start_time = "0" + start_time_hour.toString()
+          }
+          if(start_time_min.toString().length < 2){
+              start_time_min = "0" + start_time_min.toString()
+          }
+          start_time = start_time + ":" + start_time_min;
+          start_time_num = start_time_hour * 100 + start_time_min;
+          startTimeObj.value = start_time;
+          if(end_time_num < start_time_num){
+              end_time_num = start_time_num;
+              end_time = start_time;
+          }
+          endTimeObj.value = end_time;
+      }
+      function resetEndTime(){
+          let time = endTimeObj.value;
+          let end_time_hour = parseInt(time.split(":")[0]);
+          let end_time_min = parseInt(time.split(":")[1]);
+          if(end_time_hour >= 23){
+              end_time_hour = 22;
+              end_time_min = 30;
+          }else if(end_time_hour === 22 && end_time_min > 30){
+              end_time_hour = 22;
+              end_time_min = 30;
+          }else{
+              end_time_min -= end_time_min % 10;
+          }
+          end_time = end_time_hour.toString();
+          if(end_time_hour.toString().length < 2){
+              end_time = "0" + end_time_hour.toString()
+          }
+          if(end_time_min.toString().length < 2){
+              end_time_min = "0" + end_time_min.toString()
+          }
+          end_time = end_time + ":" + end_time_min;
+          end_time_num = end_time_hour * 100 + end_time_min;
+          if(startDate === endDate && end_time_num < start_time_num){
+              end_time = start_time;
+              end_time_num = start_time_num;
+          }
+          endTimeObj.value = end_time;
+      }
+      function toggleGroup(){
+          group = groupRadio.checked;
+          chips.style.display = 'block';
+      }
+      function togglePerson(){
+          group = groupRadio.checked;
+          console.log(group);
+          chips.style.display = 'none';
+          groupMembers = []
+      }
+      function toggleGubun1(){
+          gubun = 1;
+          endDateObj.disabled = true;
+          resetStartDate();
+      }
+      function toggleGubun2() {
+          gubun = 0;
+          endDateObj.disabled = false;
+      }
+
+      function resetHakbun() {
+          let instance = M.Chips.getInstance($('.chips'));
+          let dt = instance.chipsData;
+          if(dt.length !== 0){
+              let item = dt[dt.length-1].tag;
+              let re = /^\d{2}-\d{3}/;
+              groupMembers.push(dt[dt.length-1].tag);
+              if (!re.test(item)){
+                  alert('잘못된 학번입니다.');
+                  instance.deleteChip(dt.length-1);
+              }
+          }
+      }
+      function resetHakbun2() {
+          // let dt = M.Chips.getInstance($('.chips')).chipsData;
+          groupMembers.pop();
+      }
+      function submitData(){
+          let rne = document.getElementById('rne').checked ? 1 : 0;
+          group = group ? 1 : 0;
+          let start_hour, start_min = start_time_num % 100;
+          let end_hour, end_min = end_time_num % 100;
+          let sDate = startDateObj.value, eDate = endDateObj.value;
+          let place = document.getElementById('place').value;
+          place = place.split(" ");
+          place = place.join("_");
+          let reason = document.getElementById('reason').value;
+          reason = reason.split(" ");
+          reason = reason.join("_");
+          start_hour = (start_time_num - start_min) / 100;
+          end_hour = (end_time_num - end_min) / 100;
+          let haksaPasswordVal = haksaPassword.value;
+
+          /////////////////////////정각 처리 ///////////////////////
+          if(typeof start_time_num === "string") {
+              start_hour = Math.floor(parseInt(start_time_num) / 10000);
+              start_min = 0;
+          }
+          if(typeof end_time_num === "string"){
+              end_hour = Math.floor(parseInt(end_time_num) / 10000);
+              end_min = 0;
+          }
+
+          if(place === ""){
+              alert('외출 장소를 입력해 주세요!');
+              document.getElementById('place').focus();
+          }else if(reason === ""){
+              alert('외출 사유를 입력해 주세요!');
+              document.getElementById('reason').focus();
+          }else if (haksaPasswordVal === ""){
+              alert("비밀번호를 입력해 주세요!");
+              haksaPasswordVal.focus();
+          }else{
+              let groupMem = groupMembers.join(';');
+              //console.log('17-014', haksaPasswordVal, gubun, group, rne, sDate, returnTwo(start_hour), returnTwo(start_min), eDate, returnTwo(end_hour), returnTwo(end_min), place, reason, '010-5617-7250', 'N', groupMem);
+              loadXML(['17-014', haksaPasswordVal, gubun, group, rne, sDate, returnTwo(start_hour), returnTwo(start_min), eDate, returnTwo(end_hour), returnTwo(end_min), place, reason, '010-5617-7250', 'N', groupMem])
+          }
+      }
+
+      function loadXML(arr) {
+          let xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+              if (this.readyState === 4 && this.status === 200) {
+                  //document.getElementById("demo").innerHTML = this.responseText;
+                  alert("신청이 완료되었습니다.\n반영되기까지는 최대 1분이 소요됩니다.");
+                  window.location.reload();
+              }
+          };
+          xhttp.open("POST", "http://klist.cf:54321/info", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("hakbun=" + arr[0] + "&password=" + arr[1] + "&gubun=" + arr[2] + "&group=" + arr[3] + "&rne=" + arr[4] + '&sDate=' + arr[5] + "&sHour=" + arr[6] + "&sMin=" + arr[7] + "&eDate=" + arr[8] + "&eHour=" + arr[9] + "&eMin=" + arr[10] + "&place=" + arr[11] + "&reason=" + arr[12] + "&phone=" + arr[13] + "&study=" + arr[14] + "&groupMem=" + arr[15]);
+      }
+  </script>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title> DS project </title>
+</head>
+
+<body class="blue-grey darken-4">
+
+
+
+
+
+<!-------------------------------------------------------nav-bar------------------------------------------------------->
+<div class="navbar-fixed">
+  <nav class="blue-grey darken-4">
+    <div class="nav-wrapper" >
+      <a href="#!" class="brand-logo">Combined</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="sass.html">Sass</a></li>
+  <li><a href="badges.html">Components</a></li>
+  <li><a href="collapsible.html">Javascript</a></li>
+  <li><a href="mobile.html">Mobile</a></li>
+</ul>
+
+<!-----------------------------------------------------login-page------------------------------------------------------>
+<div style="display:none;">
+  <div class="row">
+    <div class="col s12 m12 l12 white-text center" style="font-size: 30px; margin-top:30%; margin-bottom: 10px;">
+      Login
+    </div>
+    <div class="col s8 offset-s2 m8 offset-m2 l8 offset-l2" style="border-style: solid; border-color: white; border-radius: 10px; border-width: 1px; padding-top: 5px; padding-bottom: 5px">
+      <div class="input-field col s12 m12 l12">
+        <input id="student_id" type="text" class="validate white-text">
+        <label for="student_id">Student ID</label>
+      </div>
+      <div class="input-field col s12 m12 l12">
+        <input id="password" type="password" class="validate white-text">
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="col s12 m12 l12 center">
+      <button class="btn waves-effect waves-light" type="login" name="action" style="margin-top: 10px; margin-bottom: 10px;">login
+      </button>
+    </div>
+    <div class="col s12 m12 l12 center">
+      <a href="#" style="font-size: 15px; color:white;">Sign Up</a>
+    </div>
+  </div>
+
+</div>
+
+<!-----------------------------------------------------Sign up-page------------------------------------------------------>
+<div style="display:none;">
+  <div class="center" style="margin-top:10px; margin-bottom: 10px; font-size: 25px; color:white;">Sign Up</div>
+
+  <div class="row" style="margin-left: 10px; margin-right: 10px;">
+    <div class="col s12 m6 offset-m3 l6 offset-l3 white" style="border-radius: 5px; margin-bottom: 5px;">
+
+      <div class="center" style="font-size: 20px; color:#263238;">학번</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="text" id="sign_up_student_id">
+      </div>
+      <div class="center" style="font-size: 20px; color:#263238;">전화번호</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="text" id="">
+      </div>
+      <div class="center" style="font-size: 20px; color:#263238;">비밀번호</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="password" id="">
+      </div>
+      <div class="center" style="font-size: 20px; color:#263238;">비밀번호 확인</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="password" id="">
+      </div>
+    </div>
+  </div>
+  <div class="center" style="margin-top: 5px;">
+    <button class="btn waves-effect waves-light" id="submit2" type="submit" name="action">등록
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
+</div>
+
+
+
+
+<!-----------------------------------------------app-selection-page--------------------------------------------------->
+<div style="display:none;">
+  <div class="collection " style="border-style:none;">
+    <a href="#!" class="collection-item waves-effect waves-black">
+      <div class="row valign-wrapper" style="height: 100px">
+        <div class="col s2 m2 l2">
+          <img src="gorden.png" alt="" class="circle" style="height:70px">
+        </div>
+        <div class="col s9 m9 l9 center white-text" style="font-size:20px">Gorden Ramsay</div>
+      </div>
+    </a>
+
+    <a href="#!" class="collection-item waves-effect waves-black">
+      <div class="row valign-wrapper" style="height: 100px">
+        <div class="col s2 m2 l2">
+          <img src="gorden.png" alt="" class="circle" style="height:70px">
+        </div>
+        <div class="col s9 m9 l9 center white-text" style="font-size:20px">Gorden Ramsay</div>
+      </div>
+    </a>
+
+    <a href="#!" class="collection-item waves-effect waves-black">
+      <div class="row valign-wrapper" style="height: 100px">
+        <div class="col s2 m2 l2">
+          <img src="gorden.png" alt="" class="circle" style="height:70px">
+        </div>
+        <div class="col s9 m9 l9 center white-text" style="font-size:20px">Gorden Ramsay</div>
+      </div>
+    </a>
+
+    <a href="#!" class="collection-item waves-effect waves-black">
+      <div class="row valign-wrapper" style="height: 100px">
+        <div class="col s2 m2 l2">
+          <img src="gorden.png" alt="" class="circle" style="height:70px">
+        </div>
+        <div class="col s9 m9 l9 center white-text" style="font-size:20px">Gorden Ramsay</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+
+<!-------------------------------------------------------chat-page----------------------------------------------------->
+<div>
+
+</div>
+
+
+<!-------------------------------------------------------외출신청----------------------------------------------------->
+
+<div style="display;">
+  <div class="center" style="margin-top:10px; margin-bottom: 10px; font-size: 25px; color:white;">외출 신청</div>
+
+  <div class="row" style="margin-left: 10px; margin-right: 10px;">
+    <div class="col s12 white" style="border-radius: 5px; margin-bottom: 5px;">
+
+      <div class="row">
+        <div class="col s4">
+          <div class="grey lighten-3 valign-wrapper" style="border-radius: 5px; margin-top: 5px; margin-bottom: 5px; min-height: 40px;">
+            <div class="center" style="width: 100%">
+              <label>
+                <input name="group1" type="radio" id="gubun1" checked>
+                <span style="color:#263238;">외출</span>
+              </label>
+              <label>
+                <input name="group1" type="radio" id="gubun2">
+                <span style="color:#263238;">외박</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="grey lighten-3 valign-wrapper" style="border-radius: 5px; margin-top: 5px; margin-bottom: 5px; min-height: 40px;">
+            <div class="center" style="width: 100%">
+              <label>
+                <input name="group2" type="radio" id="person" checked>
+                <span style="color:#263238;">개인</span>
+              </label>
+              <label>
+                <input name="group2" type="radio" id="group"/>
+                <span style="color:#263238;">단체</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="grey lighten-3 valign-wrapper" style="border-radius: 5px; margin-top: 5px; margin-bottom: 5px; height: 40px;">
+            <div class="center" style="width: 100%">
+              <label>
+                <input type="checkbox" id="rne"/>
+                <span style="color:#263238;">R&E</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grey lighten-3" id="chips" style="display:none; border-radius: 5px; margin-top: 5px; margin-bottom: 5px;">
+        <div class="chips chips-placeholder" id="chips2"></div>
+      </div>
+
+
+      <div class="center" style="font-size: 20px; color:#263238;">외출 시간</div>
+      <div class="row" style="margin-top: 0px; margin-bottom: 0px;">
+        <div class="col s6">
+          <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+            <input type="date" id="start_date">
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+            <input type="time" id="start_time">
+          </div>
+        </div>
+      </div>
+      <div class="center" style="font-size: 20px; color:#263238;">귀교 시간</div>
+      <div class="row" style="margin-top: 0px; margin-bottom: 0px;">
+        <div class="col s6">
+          <div class="grey lighten-3" style="border-radius: 5px; margin-top: 5px; margin-bottom: 5px;">
+            <input type="date" id="end_date" disabled>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="grey lighten-3" style="border-radius: 5px; margin-top: 5px; margin-bottom: 5px;">
+            <input type="time" id="end_time"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="center" style="font-size: 20px; color:#263238;">외출 장소</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="text" id="place">
+      </div>
+      <div class="center" style="font-size: 20px; color:#263238;">외출 사유</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="text" id="reason">
+      </div>
+      <div class="center" style="font-size: 20px; color:#263238;">학사사이트 비밀번호</div>
+      <div class="grey lighten-3" style="border-radius: 5px; margin-top: 0px; margin-bottom: 0px;">
+        <input type="password" id="password2">
+      </div>
+    </div>
+  </div>
+  <div class="center" style="margin-top: 5px;">
+    <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">나가자! 자유의 세계로!
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</div>
+
+
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        //Init Carousel
+        $('.collapsible').collapsible();
+        $('.sidenav').sidenav();
+        $('.chips-placeholder').chips({
+            placeholder: '학번 복수입력',
+            secondaryPlaceholder: '+Tag',
+            onChipAdd: resetHakbun,
+            onChipDelete: resetHakbun2
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>register/Register Page</title>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.webbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #00062d;
+}
+button {
+    background-color: #425983;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+button:after,
+button:hover {
+    background-color:#123056;
+}
+.container {
+    padding: 16px;
+}
+.registergrid {
+    display: block; 
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+.registergrid-content {
+    background-color: #fefefe;
+    margin: 15% auto auto auto;
+    width: 80%; 
+}
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+@media screen and (max-width: 300px) {
+    .webbtn {
+       width: 100%;
+    }
+}
+</style>
+</head>
+<body style="background-color:#123056">
+<div id="register" class="registergrid">
+  <form class="registergrid-content animate" action="/">    
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label for=""><b>Phone Number</b></label>
+      <input type="text" placeholder="Enter Phone Number" name="pnum" required>    
+
+      <button type="submit">register</button>
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+        <br>
+        <input type="checkbox" id="studentcheck"  onclick="student()"> I'm Kyunggi Student
+      </label>
+    </div>
+    <div id="kyunggistd" style="display:none" class="container">
+        <label for="uname"><b>Student ID</b></label>
+        <input type="text" placeholder="Enter Your ID" name="studentid" required>
+
+        <label for="uname"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="location.href='http://klist.cf'" class="webbtn">KLIST PAGE</button>
+        <span class="psw" style="margin-left:15%;">Have <a href="login.html" style="text-decoration:none;color:#00062d">Account?</a></span>
+    </div>
+  </form>
+</div>
+
+<script>
+var registergrid = document.getElementById('register');
+
+// window.onclick = function(event) {
+//     if (event.target == registergrid) {
+//         registergrid.style.display = "none";
+//     }
+// }
+
+function student() {
+    var checkBox = document.getElementById("studentcheck");
+    var text = document.getElementById("kyunggistd");
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } else {
+       text.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

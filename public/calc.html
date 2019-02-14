@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>확통</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#123056">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">      
+    <link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Mina', sans-serif;
+        }
+        p, a {
+            font-size: 1.5em;
+        }
+        h5 {
+            font-size: 1.6em;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .pink {
+            color: #e91263;
+        }
+        .gray {
+            color: #707070;
+        }
+        #loading {
+            height: 100%;
+            width: 100%;
+            color: white;
+            text-align: center;
+            -webkit-animation-name: animateapear;
+            -webkit-animation-duration: 1s;
+            animation-name: animateapear;
+            animation-duration: 1s
+        }
+        .animate-apear {
+            -webkit-animation-name: animateapear;
+            -webkit-animation-duration: 1s;
+            animation-name: animateapear;
+            animation-duration: 1s
+        }
+        @-webkit-keyframes animateapear {
+            from { opacity:0 }
+            to { opacity:1 }
+        }
+
+        @keyframes animateapear {
+            from{ opacity:0 }
+            to{  opacity:1 }
+        }
+        @media screen and (max-width: 1024px){
+            .mdl-layout__header {
+                display: inherit;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color:#305d7b;;height:100%;width:100%;">
+    <div>
+        <header id="nav" class="mdl-layout__header" style="position:fixed;width:100%;z-index:2;background-color:#123056;color:white">
+            <div class="mdl-layout-icon" style="text-align:right;" onclick="document.getElementById('lname').click();"><img src="images/logo.png" height="100%" /></div>
+            <div class="mdl-layout__header-row">
+                <a class="mdl-navigation__link" href="#b0" id="lname"><span onclick="document.getElementById('lname').click();" class="mdl-layout-title"><span class="mdl-cell--hide-phone mdl-cell--hide-tablet">경우의 수</span> 계산기</span></a>
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content" style="width:100%;background-color:white;padding-top:3em;">
+            <div class="mdl-grid" style="background-color:white;">
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone" style="padding:1em;">
+                    <h4>!</h4>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Fn" name="Fn">
+                        <label class="mdl-textfield__label" for="Pn">n</label>
+                    </div>
+                    <span style="padding-left:1rem;">!</span>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('Fa').innerHTML = F(document.getElementById('Fn').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Fa"></span>
+                    <br /><br />
+
+                    <h4>순열의 수</h4>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Pn" name="Pn">
+                        <label class="mdl-textfield__label" for="Pn">n</label>
+                    </div>
+                    <span style="padding-left:1rem;padding-right:1rem;">P</span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="Pr" name="Pr">
+                        <label class="mdl-textfield__label" for="Pr">r</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('Pa').innerHTML = P(document.getElementById('Pn').value, document.getElementById('Pr').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Pa"></span>
+                    <br /><br />
+
+                    <h4>중복순열의 수</h4>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="PIn" name="PIn">
+                        <label class="mdl-textfield__label" for="PIn">n</label>
+                    </div>
+                    <span style="padding-left:1rem;padding-right:1rem;">Π</span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="PIr" name="PIr">
+                        <label class="mdl-textfield__label" for="PIr">r</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('PIa').innerHTML = PI(document.getElementById('PIn').value, document.getElementById('PIr').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="PIa"></span>
+                    <br /><br />
+
+                    <h4>조합의 수</h4>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Cn" name="Cn">
+                        <label class="mdl-textfield__label" for="Cn">n</label>
+                    </div>
+                    <span style="padding-left:1rem;padding-right:1rem;">C</span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="Cr" name="Cr">
+                        <label class="mdl-textfield__label" for="Cr">r</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('Ca').innerHTML = C(document.getElementById('Cn').value, document.getElementById('Cr').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Ca"></span>
+                    <br /><br />
+
+                    <h4>중복조합의 수</h4>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Hn" name="Hn">
+                        <label class="mdl-textfield__label" for="Hn">n</label>
+                    </div>
+                    <span style="padding-left:1rem;padding-right:1rem;">H</span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="Hr" name="Hr">
+                        <label class="mdl-textfield__label" for="Hr">r</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('Ha').innerHTML = H(document.getElementById('Hn').value, document.getElementById('Hr').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Ha"></span>
+                    <br /><br />
+
+                    <h4>집합의 분할</h4>
+                    <span style="padding-right:1rem;">S(</span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Sn" name="Sn">
+                        <label class="mdl-textfield__label" for="Sn">n</label>
+                    </div>
+                    <span style="padding-left:1rem;padding-right:1rem;">, </span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="Sr" name="Sr">
+                        <label class="mdl-textfield__label" for="Sr">k</label>
+                    </div>
+                    <span style="padding-left:1rem;">)</span>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('Sa').innerHTML = S(document.getElementById('Sn').value, document.getElementById('Sr').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Sa"></span>
+                    <br /><br />
+
+                    <h4>자연수의 분할</h4>
+                    <span style="padding-right:1rem;">P(</span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Pan" name="Pan">
+                        <label class="mdl-textfield__label" for="Pan">n</label>
+                    </div>
+                    <span style="padding-left:1rem;padding-right:1rem;">, </span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:50px;">
+                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="Par" name="Par">
+                        <label class="mdl-textfield__label" for="Par">k</label>
+                    </div>
+                    <span style="padding-left:1rem;">)</span>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="document.getElementById('Paa').innerHTML = Pa(document.getElementById('Pan').value, document.getElementById('Par').value);">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Paa"></span>
+                    <br /><br />
+
+
+                    <h4>평균, 표준편차</h4>
+                    <span style="padding-right:1rem;">변량: </span>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:200px;">
+                        <input class="mdl-textfield__input" type="text" id="Mx" name="Mx" placeholder="1,2,3, ...">
+                        <label class="mdl-textfield__label" for="Mx">x</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--accent" style="margin-left:2rem;" onclick="Means();">
+                        <i class="material-icons">arrow_forward</i>
+                    </button><br />
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Ma"></span><br />
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Mb"></span><br />
+                    <span style="color:#e91e63;font-size:2rem;padding-left:1rem;" id="Mc"></span>
+                    <br /><br />
+                </div>
+                <div class="mdl-layout-spacer"></div>                
+            </div>
+    
+            <footer class="mdl-mega-footer" style="background-color:#305d7b;">
+                <div class="mdl-mega-footer__middle-section">
+                    <div class="mdl-mega-footer__bottom-section">
+                        <h6 style="color:white;">Made by <big><b>SeongPil Bae</b></big></h6>
+                    </div>
+                </div>
+            </footer>
+        </main> 
+    </div>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script>
+        //Factorial
+        function F(n) {
+            n = n * 1;
+            var ans = 1;
+            for (var i = 1; i <= n; i++) {
+                ans *= i;
+            }
+            return ans;
+        }
+        
+        //Permutation
+        function P(n, r) {
+            n = n * 1;
+            r = r * 1;
+            return F(n) / F(n - r);
+        }
+
+        //Product
+        function PI(n, r) {
+            n = n * 1;
+            r = r * 1;
+            var ans = 1;
+            for (var i = 0; i < r; i++) {
+                ans *= n;
+            }
+            return ans;
+        }
+
+        //Combination
+        function C(n, r) {
+            n = n * 1;
+            r = r * 1;
+            return P(n, r) / F(r);
+        }
+
+        //Homogeneous
+        function H(n, r) {
+            n = n * 1;
+            r = r * 1;
+            return C((n + r - 1), r);
+        }
+
+        //Stirling number
+        function S(n, r) {
+            n = n * 1;
+            r = r * 1;
+            if (n == r) {
+                return 1;
+            } else if (r ==1) {
+                return 1;
+            } else if ((n - 1) == r) {
+                return C(n, 2);
+            } else {
+                return S(n - 1, r - 1) + r * S(n - 1, r);
+            }
+        }
+
+        //Partition
+        function Pa(n, r) {
+            n = n * 1;
+            r = r * 1;
+            if (r == 1 || n == r) {
+                return 1;
+            } else if (r > n || r <= 0) {
+                return 0;
+            } else {
+                return Pa(n - 1, r - 1) + Pa(n - r, r);
+            }
+        }
+
+        function Means() {
+            var c = document.getElementById('Mx').value;
+            var x = c.split(",");
+            document.getElementById('Ma').innerHTML = 'm=' + M(x);
+            document.getElementById('Mb').innerHTML = 'σ^2=' + Si2(x);
+            document.getElementById('Mc').innerHTML = 'σ=' + Si(x);
+        }
+
+        function M(x) {
+            var sum = 0;
+            for (var i in x) {
+                sum += x[i] * 1;
+            }
+            return sum / x.length;
+        }
+
+        function Si2(x) {
+            var m = M(x);
+            var sum = 0;
+            for (var i in x) {
+                sum += (x[i] * 1) * (x[i] * 1);
+            }
+            return (sum / x.length) - m * m;
+        }
+
+        function Si(x) {
+            return Math.sqrt(Si2(x));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TARS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#305d7b">
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.pink-indigo.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">      
+    <link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Mina', sans-serif;
+        }
+        p, a {
+            font-size: 1.5em;
+        }
+        h5 {
+            font-size: 1.6em;
+        }
+        ::-webkit-scrollbar { 
+            display: none; 
+        }
+        .bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .pink {
+            color: #e91e63;
+        }        
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+        @-webkit-keyframes animatebottom {
+            from { bottom:-100px; opacity:0 } 
+            to { bottom:0px; opacity:1 }
+        }
+
+        @keyframes animatebottom { 
+            from{ bottom:-100px; opacity:0 } 
+            to{ bottom:0; opacity:1 }
+        }        
+        @media screen and (max-width: 1024px){
+            .mdl-layout__header {
+                display: inherit;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color:#305d7b">
+
+    <header id="nav" class="mdl-layout__header" style="position:fixed;width:100%;z-index:2;background-color:#305d7b;color:white">
+        <div class="mdl-layout-icon" style="text-align:right;" onclick="location.pathname='/'"><img src="../../images/logo.png" height="100%" /></div>
+        <div class="mdl-layout__header-row">
+            <a class="mdl-navigation__link" href="#b1" id="lname"><span onclick="location.pathname='/'" class="mdl-layout-title"><span class="mdl-cell--hide-phone mdl-cell--hide-tablet">경기고등학교 </span>과학기술정보통신부</span></a>
+        </div>
+    </header>
+
+    <main class="mdl-layout__content animate-bottom" style="width:100%;display:none;" id="main">
+        <div style="padding-top:7em;padding-bottom:3em;text-align:center;background-color:#424242;color:white;">
+            <h3>영화 '인터스텔라' 속 <b>TARS</b>의 재현</h3>
+            <br /><br />
+        </div>
+        <div class="mdl-grid" style="background-color:white;">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone" style="padding:1em;">
+                <h4>Members</h4>
+                <div style="text-align: center;display: table; margin-right: auto;">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">이름</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">역할</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>1</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">김범수</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">설계 및 제작</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br /><br />
+                <h4>Index</h4>
+                <h6><b>TASRS mini</b>는 영화 '인터스텔라'에 등장한 로봇 'TARS'를 재현해내는 프로젝트입니다.</h6>
+                <br /><br />
+                <h4>Images</h4>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('../../images/projects/2018/tars/') center / cover;background-color:#123056;color:white;width:100%;">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                        </div>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </div>
+            <div class="mdl-layout-spacer"></div>                
+        </div>
+
+        <footer class="mdl-mega-footer" style="background-color:#305d7b;">
+            <div class="mdl-mega-footer__middle-section">
+                <div class="mdl-mega-footer__bottom-section">
+                    <h6 style="color:white;">경기고등학교 <b>과학기술정보통신부</b></h6>
+                </div>
+            </div>
+        </footer>
+    </main>    
+
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        window.onload = function(){
+            document.getElementById("main").style.display = "";
+        }
+    </script>
+</body>
+</html>

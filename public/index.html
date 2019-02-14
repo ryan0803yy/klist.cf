@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>LIST</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#123056">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">      
+    <link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Mina', sans-serif;
+        }
+        p, a {
+            font-size: 1.5em;
+        }
+        h5 {
+            font-size: 1.6em;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .pink {
+            color: #123056;
+        }
+        .gray {
+            color: #707070;
+        }
+        #loading {
+            height: 100%;
+            width: 100%;
+            color: white;
+            text-align: center;
+            -webkit-animation-name: animateapear;
+            -webkit-animation-duration: 1s;
+            animation-name: animateapear;
+            animation-duration: 1s
+        }
+        .animate-apear {
+            -webkit-animation-name: animateapear;
+            -webkit-animation-duration: 1s;
+            animation-name: animateapear;
+            animation-duration: 1s
+        }
+        @-webkit-keyframes animateapear {
+            from { opacity:0 }
+            to { opacity:1 }
+        }
+
+        @keyframes animateapear {
+            from{ opacity:0 }
+            to{  opacity:1 }
+        }
+        @media screen and (max-width: 1024px){
+            .mdl-layout__header {
+                display: inherit;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color:#123056;height:100%;width:100%;display:none;" id="body">
+    <div id="loading">
+        <img src="images/load.png" style="width:200px" />
+    </div>
+    <div class="animate-apear" id="main" style="display:none;">
+        <header id="nav" class="mdl-layout__header" style="position:fixed;width:100%;z-index:2;background-color:#123056;color:white">
+            <div class="mdl-layout-icon" style="text-align:right;" onclick="document.getElementById('lname').click();"><img src="images/logo.png" height="100%" /></div>
+            <div class="mdl-layout__header-row">
+                <a class="mdl-navigation__link" href="#b0" id="lname"><span onclick="document.getElementById('lname').click();" class="mdl-layout-title"><span class="mdl-cell--hide-phone mdl-cell--hide-tablet">경기고등학교 </span>과학기술정보통신부</span></a>
+                <div class="mdl-layout-spacer"></div>
+                <!--<div>
+                    <span class="mdl-chip mdl-chip--contact mdl-color--green mdl-color-text--white mdl-cell--hide-phone mdl-cell--hide-tablet" style="cursor:pointer;" onclick="document.getElementById('lang_menu').click();">
+                        <span class="mdl-chip__contact">
+                            <button id="lang_menu" class="mdl-button mdl-js-button mdl-button--icon">
+                                <i class="material-icons">language</i>
+                            </button>
+                        </span>
+                        <span class="mdl-chip__text">Languages</span>
+                    </span>
+                    <button id="lang_menu2" class="mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-desktop" style="margin-right:1rem;">
+                        <i class="material-icons">language</i>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="lang_menu">
+                        <li class="mdl-menu__item" onclick="location.pathname = '/ko.html'"><span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">K</span>한국어</li>
+                        <li class="mdl-menu__item" onclick="location.pathname = '/'"><span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">E</span>English</li>
+                    </ul>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="lang_menu2">
+                        <li class="mdl-menu__item" onclick="location.pathname = '/ko.html'"><span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">K</span>한국어</li>
+                        <li class="mdl-menu__item" onclick="location.pathname = '/'"><span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">E</span>English</li>
+                    </ul>
+                </div>-->
+            </div>
+        </header>
+
+        <main class="mdl-layout__content animate-apear" style="width:100%;background-color:white">
+            <div id="b0" style="background-color:#ffffff;background-image:url('images/bg1.png');background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;padding:3em;padding-top:7em;text-align:center;color:black;">
+                <img src="images/logo_b7.png" height="300px;" />
+                <br /><br /><br />
+                <div style="text-align:center">
+                    <h3>과학기술과 ICT로 열어가는 사람중심의 <b>4차 산업혁명</b></h3>
+                </div>
+                <br /><br /><br />
+            </div>
+            <!-- <div style="background-color:#c4c4c4;padding:3em;text-align:center;color:#123056;">
+                <div class="mdl-grid" id="ct">
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="text-align:center">
+                        <h2><b>2018</b></h2>
+                        <h4>신규 부원 모집</h4>
+                        <hr class="mdl-cell--hide-desktop" />
+                    </div>
+                    <div class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="text-align:center">
+                        <h3><span id="clock" style="font-size:2em;"></span></h3>
+                        <h5>(~ 3/12 23:59:59)</h5>
+                        <span id="regbtn" class="mdl-chip mdl-chip--contact" style="background-color:#425983;color:#e0e0e0;cursor:pointer;margin-right:1rem;" onclick="location.pathname = '/register.html'">
+                            <span class="mdl-chip__contact">
+                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">group_add</i>
+                                </button>
+                            </span>
+                            <span class="mdl-chip__text">가입 신청</span>
+                        </span>
+                        <span class="mdl-chip mdl-chip--contact" style="background-color:#425983;color:#e0e0e0;cursor:pointer;" onclick="dialog.showModal();">
+                            <span class="mdl-chip__contact">
+                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">check</i>
+                                </button>
+                            </span>
+                            <span class="mdl-chip__text">신청 확인</span>
+                        </span>
+                    </div>
+                </div>
+            </div> -->
+            <div style="background-color:#ffffff;padding:3em;text-align:center;color:black;">
+                <h2>We're good at</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="text-align:center">
+                        <i class="material-icons pink" style="font-size:5rem">print</i>
+                        <h4>3D 프린터 &amp; 모델링</h4>
+                        <p class="gray">상상을 인쇄하다</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="text-align:center">
+                        <i class="material-icons pink" style="font-size:5rem">code</i>
+                        <h4>코드</h4>
+                        <p class="gray">가장 강력한 언어</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="text-align:center">
+                        <i class="material-icons pink" style="font-size:5rem">visibility</i>
+                        <h4>VR</h4>
+                        <p class="gray">보고, 즐기고, 체험하고</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone" style="text-align:center">
+                        <i class="material-icons pink" style="font-size:5rem">memory</i>
+                        <h4>로봇</h4>
+                        <p class="gray">Arduino, Raspberry Pi</p>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color:#ffffff;padding:3em;color:black;">
+                <div class="mdl-grid" style="padding-top:3em;padding-bottom:3em;">
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="text-align:center">
+                        <h2>무엇이든지 </h2><h2><b class="pink">꿈꾸세요</b></h2>
+                        <h4>여러분의 상상이 이곳에서 현실이 됩니다!</h4>
+                        <hr class="mdl-cell--hide-desktop" />
+                    </div>
+                    <div class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="text-align:left">
+                        <p><b>경기고등학교 과학기술정보통신부</b>(LIST, Leader of ICT &amp; Science Technology)는 다가올 4차 산업혁명의 핵심 기술들에 대해 배우고, 연구/발명 등의 창의적 활동을 하는 동아리입니다. 바로 이 곳에서, 여러분이 상상하던 미래를 만나볼 수 있을 것입니다!</p>
+                        <br />
+                        <p><b>과학기술정보통신부</b>에는 여러분의 상상을 현실로 만들어줄 3D 프린터, 360 카메라, Gear VR, 드론, 아두이노, 라즈베리 파이, 각종 전기 전자 부품 등이 준비되어 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color:#eeeeee;padding:3em;text-align:center;color:#424242;">
+                    <h2 style="color:black;">연구 분야</h2>
+                <br />
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <img src="images/I1.png" width="100%" style="max-width:256px;" />
+                        <h3 class="pink">소프트웨어, 인공지능</h3>
+                        <p>다양한 분야의 소프트웨어를 직접 설계하고 제작합니다.</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <img src="images/I2.png" width="100%" style="max-width:256px;" />
+                        <h3 class="pink">IoT</h3>
+                        <p>Arduino, Raspberry Pi 등을 활용해 단순 하드웨어나 IoT 기기를 제작합니다.</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <img src="images/I3.png" width="100%" style="max-width:256px;" />
+                        <h3 class="pink">3D</h3>
+                        <p>VR 등 가상 환경이나 3D 환경에 사용될 컨텐츠를 제작합니다.</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <img src="images/I4.png" width="100%" style="max-width:256px;" />
+                        <h3 class="pink">블록체인</h3>
+                        <p>블록 체인의 기술과 활용 방안을 연구합니다.</p>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </div>
+            <div style="background-color:white;padding:3em;text-align:center;">
+                <h2>2018년 활동 계획</h2>
+                <h4 class="gray">(추후 변경될 수 있습니다.)</h4>
+                <div style="text-align: center;display: table; margin-left: auto; margin-right: auto;">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th>월/일</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">주제</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">세부 내용</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><del>3/19</del></th>
+                                <th class="pink mdl-data-table__cell--non-numeric"><del>OT</del></th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric"><del>동아리 소개 및 안내</del></th>
+                            </tr>
+                            <tr>
+                                <th><del>3/30</del></th>
+                                <th class="pink mdl-data-table__cell--non-numeric"><del>화동제 기획</del></th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric"><del>아이디어 회의 예정</del></th>
+                            </tr>
+                            <tr>
+                                <th>4/06</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">화동제 세부 계획</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">프로젝트별 조원 배치 등</th>
+                            </tr>
+                            <tr>
+                                <th>4/13</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">프로젝트</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">예산 등 점검</th>
+                            </tr>
+                            <tr>
+                                <th>6/15</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">프로젝트</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">프로젝트 중간 점검1</th>
+                            </tr>
+                            <tr>
+                                <th>7/13</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">중간 점검</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">프로젝트 중간 점검2</th>
+                            </tr>
+                            <tr>
+                                <th>8/17</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">화동제 준비</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">프로젝트 최종 점검</th>
+                            </tr>
+                            <tr>
+                                <th>8/18</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">화동제</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">부스 활동</th>
+                            </tr>
+                            <tr>
+                                <th>8/24</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">화동제 평가</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">평가, 발표대회 준비</th>
+                            </tr>
+                            <tr>
+                                <th>10/22</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">이공계 동아리 발표대회</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric"></th>
+                            </tr>
+                            <tr>
+                                <th>10/26</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">생활기록부 기재 사항 확인</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric"></th>
+                            </tr>
+                            <tr>
+                                <th>11/30</th>
+                                <th class="pink mdl-data-table__cell--non-numeric">내년도 계획 수립</th>
+                                <th class="mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">동아리 활동 평가</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="padding:3em;background-color:#424242;color:white">
+                <h2 style="text-align:center;">협력 동아리</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/EOS.jpg') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('http://eosofksa.cf/')" id="eos" onmouseover="min('eos');" onmouseout="mout('eos');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>한국과학영재학교 EOS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+                <br />
+                <h2 style="text-align:center;">공동 프로젝트</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/projects/2018/printvr/vr.jpg') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('/Projects/2018/3dvr.html')" id="cp1" onmouseover="min('cp1');" onmouseout="mout('cp1');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>Print-VR</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+                <br />
+            </div>
+            <div style="padding:3em;background-color:#fafafa;color:black">
+                <h2 style="text-align:center;">진행중인 프로젝트</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/projects/2018/htdf/') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('/Projects/2018/hdtf.html')" id="p01" onmouseover="min('p01');" onmouseout="mout('p01');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>HDTF(화동제 앱)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/projects/2018/tars/') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('/Projects/2018/tars.html')" id="p02" onmouseover="min('p02');" onmouseout="mout('p02');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>TARS Mini</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/projects/2018/buildit/') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('/Projects/2018/buildit.html')" id="p03" onmouseover="min('p03');" onmouseout="mout('p03');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>3D BuildIt</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+                <br />
+                <h2 style="text-align:center;">완료된 프로젝트</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/projects/2018/web/') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('/Projects/2018/web.html')" id="pe01" onmouseover="min('pe01');" onmouseout="mout('pe01');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>LIST Website</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+                <br />
+                <h2 style="text-align:center;">임원</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/members/bsp.png') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('http://www.github.com')" id="m1" onmouseover="min('m1');" onmouseout="mout('m1');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>부장 <b>배성필</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/members/default.png') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('http://www.github.com')" id="m2" onmouseover="min('m2');" onmouseout="mout('m2');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>차장 <b>허이섭</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/members/default.png') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('http://www.github.com')" id="m3" onmouseover="min('m3');" onmouseout="mout('m3');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>차장 <b>윤재원</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp" style="background:url('images/members/default.png') center / cover;background-color:#123056;color:white;width:100%;cursor:pointer" onclick="location.assign('http://www.github.com')" id="m4" onmouseover="min('m4');" onmouseout="mout('m4');">
+                            <div class="mdl-card__title mdl-card--expand"></div>
+                            <div class="mdl-card__actions" style="height:52px;padding:16px;background:rgba(0, 0, 0, 0.4);">
+                                <span>회계 <b>천혁우</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+                <div style="height:300px;"></div>
+            </div>
+            <div id="contact" style="background-color:#123056;padding-top:6em;padding-bottom:0em;position:inherit;color:white;">
+                <br />
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="padding:5em;">
+                        <div>
+                            <h3>찾아오는 길</h3>
+                            <iframe width="100%" height="400" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B2%BD%EA%B8%B0%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90&key=AIzaSyAHB9HrWJYf-uO6Ns5yhr4-rBs2YUqCZ54" allowfullscreen></iframe>
+                            <h4><i class="material-icons">place</i> 서울, 대한민국</h4>
+                        </div><br />
+                        <div>
+                            <h3>Contact</h3>
+                            <p style="font-size:1.4rem;">놀라운 아이디어를 가지고 있나요?</p>
+                            <h4><a href="mailto:kgLISTLIST@gmail.com"><i class="material-icons">mail</i></a> kglistlist@gmail.com</h4>
+                            <h4><a href="https://www.github.com/kglist"><i class="fa fa-git" style="font-size:1.5rem;"></i></a> GitHub</h4>                        
+                            <h4><a href="https://fb.me/KLISTLIST"><i class="material-icons">sms</i></a> Messenger</h4>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--hide-tablet mdl-cell--hide-phone" style="padding:5em;">
+                        <h3 onclick="location.assign('https://fb.me/KLISTLIST')">Facebook</h3>
+                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Ffb.me%2FKLISTLIST&tabs=timeline&width=400&height=800&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" height="800" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                    </div>
+                    <div class="mdl-cell mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--hide-desktop" style="padding-left:auto;padding-right:auto;display:block;">
+                        <h3 onclick="location.assign('https://fb.me/KLISTLIST')">Facebook</h3>
+                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Ffb.me%2FKLISTLIST&tabs=timeline&width=400&height=800&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" height="800" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                    </div>
+                </div>
+            </div>
+            <footer class="mdl-mega-footer" style="background-color:#123056;">
+                <div class="mdl-mega-footer__middle-section">
+                    <div class="mdl-mega-footer__bottom-section">
+                        <h6 style="color:white;">Made by <big><b>SeongPil Bae</b></big> / Illust by <big><b>Yisub Heo</b></big> / Support by <big><b>DoHyeong Kim</b></big>(EOS)</h6>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <!-- <dialog class="mdl-dialog">
+        <form method="POST" action="/check">
+            <div class="mdl-dialog__content">
+                <h2>신청 확인</h2>
+                <p>아래 입력란을 작성해 주세요.</p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="numb" name="numb">
+                    <label class="mdl-textfield__label" for="numb">학번</label>
+                </div>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="submit" class="mdl-button close pink">OK</button>
+            </div>
+        </form>
+    </dialog> -->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script>
+        /*var dialog = document.querySelector('dialog');
+        if (! dialog.showModal) {
+          dialogPolyfill.registerDialog(dialog);
+        }
+        dialog.querySelector('.close').addEventListener('click', function() {
+          dialog.close();
+        });*/
+        window.onload = function(){
+            var h = window.innerHeight;
+            //var w = window.innerWidth;
+            document.getElementById("loading").style.marginTop = (h / 2 - 100) + "px";
+            document.getElementById("body").style.display = "";
+            setTimeout(function(){
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("main").style.display = "";
+            }, 2000);
+            $("a").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop:$(hash).offset().top
+                    }, 2000, 'easeInOutQuint');
+                }
+            });
+        }
+        function min(id) {
+            var child = document.getElementById(id);
+            child.classList.remove("mdl-shadow--2dp");
+            child.classList.add("mdl-shadow--12dp");
+            child.children[1].style.background = "rgba(0, 0, 0, 0.8)"
+        }
+        function mout(id) {
+            var child = document.getElementById(id);
+            child.classList.remove("mdl-shadow--12dp");
+            child.classList.add("mdl-shadow--2dp");
+            child.children[1].style.background = "rgba(0, 0, 0, 0.2)"
+        }
+
+        /*var countDownDate = new Date("Mar 12, 2018 23:59:59").getTime();
+        
+        var x = setInterval(function() {
+          var now = new Date().getTime();
+          var distance = countDownDate - now;
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          document.getElementById("clock").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("regbtn").style.display = "none";
+            document.getElementById("clock").innerHTML = "지금은 신청 기간이 아닙니다";
+          }
+        }, 1000);*/
+    </script>
+</body>
+</html>
